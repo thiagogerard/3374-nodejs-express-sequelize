@@ -1,13 +1,11 @@
-const database = require('../models');
+const Controller = require('./Controller.js');
+const PessoaServices = require('../services/PessoaServices.js');
 
-class PessoaControler {
-    static async pegaTodas(req, res) {
-        try {
-            const listaDePessoas = await database.Pessoa.findAll();
-            return res.status(200).json(listaDePessoas);
-        } catch (err) {
-            //ERRO
-        }
+const pessoaServices = new PessoaServices();
+
+class PessoaControler extends Controller{
+    constructor() {
+        super(pessoaServices);
     }
 }
 
