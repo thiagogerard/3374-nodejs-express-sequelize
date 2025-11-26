@@ -47,10 +47,12 @@ class Controller {
     }
 
     async atualiza(req, res) {
-        const { id } = req.params;
+        const { ...params } = req.params;
         const dadosAtualizados = req.body;
+
+        const where = converteIds(params)
         try {
-            const foiAtualizado = await this.entidadeService.atualizaRegistro(dadosAtualizados, Number(id));
+            const foiAtualizado = await this.entidadeService.atualizaRegistro(dadosAtualizados, where);
             if (!foiAtualizado) {
                 return res.status(400).json({ message: 'registro não atualizado' });
             }
