@@ -15,7 +15,7 @@ class MatriculaController extends Controller{
                 estudante_id: Number(estudante_id),
                 status: 'matriculado'
             });
-            return res.status(200).json(listaMatriculasPorEstudante);
+            return res.status(200).json(listaMatriculasPorEstudante.count);
         } catch (err) {
             return res.status(500).json({ erro: err.message });
         }
